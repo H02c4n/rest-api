@@ -4,6 +4,7 @@ const app = express();
 
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/authors");
@@ -13,6 +14,7 @@ app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout");
 app.use(expressLayouts);
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
 // Replace the following with values for your environment.
 const username = encodeURIComponent("myapi42");
